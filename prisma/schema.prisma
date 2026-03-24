@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String  @id @default(cuid())
+  name         String
+  username     String  @unique
+  email        String  @unique
+  passwordHash String
+  bio          String?
+  twitch       String?
+  youtube      String?
+  tiktok       String?
+  discord      String?
+  website      String?
+  image        String?
+
+  instagram       String?
+  twitter         String?
+  github          String?
+  kick            String?
+  spotify         String?
+  roblox          String?
+  valorantTracker String?
+
+  backgroundUrl    String?
+  backgroundType   String? @default("image")
+  accentColor      String? @default("#a855f7")
+  profileTheme     String? @default("dark")
+  profileSongUrl   String?
+  profileSongTitle String?
+  profileSongCover String?
+  profileLayout    String? @default("card")
+  showEmail        Boolean @default(false)
+
+  profileOpacity Int? @default(18)
+  profileBlur    Int? @default(18)
+  backgroundDim  Int? @default(55)
+  cardRadius     Int? @default(32)
+  glowStrength   Int? @default(35)
+
+  showSocialHeaders Boolean @default(true)
+  autoplayMusic     Boolean @default(false)
+  showMusicControls Boolean @default(true)
+
+  isOwner    Boolean @default(false)
+  isBooster  Boolean @default(false)
+  isVerified Boolean @default(false)
+  isOg       Boolean @default(false)
+  isDev      Boolean @default(false)
+  isStaff    Boolean @default(false)
+  isGifter   Boolean @default(false)
+  is10k      Boolean @default(false)
+
+  customBadgeText      String?
+  customBadgeColor     String?
+  customBadgeTextColor String?
+
+  profileViews Int @default(0)
+
+  nameChangedAt     DateTime?
+  usernameChangedAt DateTime?
+  passwordChangedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  image       String
+  category    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
